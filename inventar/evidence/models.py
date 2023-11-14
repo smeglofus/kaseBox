@@ -1,19 +1,21 @@
 from django.db import models
+from django.conf import settings
+from django.utils import timezone
 
 # Create your models here.
-class Karty(models.Model):
-    VCU = "VCU"
-    DIAG = "DIAG"
-    TCN = "TCN"
-    ETH = "ETH"
-    CANNODE = "CANNODE"
+class Polozky(models.Model):
+    BOX = "Box"
+    PRISLUSENSTVI = "Příslušenství"
+    OSTATNI = "Ostatní"
 
-    typ_volba = [(VCU, "VCU"),(DIAG, "DIAG"), (TCN, "TCN"), (ETH, "ETH"), (CANNODE, "CANNODE")]
-    typ = models.CharField(max_length=20, choices=typ_volba, default=VCU)
-    cislo = models.IntegerField(max_length=40, default=0)
-    verze = models.FloatField(max_length=5)
+    kategorie = [(BOX, "Box"),(PRISLUSENSTVI, "Příslušenství"), (OSTATNI, "Ostatní")]
+    typ = models.CharField(max_length=30, choices=kategorie, default=BOX)
+
+    nazev = models.TextField(max_length=100, blank=False)
     poznamka = models.TextField(max_length=200, blank=True)
     
 
+
+
     def __str__(self):
-        return self.typ + " " + str(self.verze) + " Číslem:  " + str(self.cislo)
+        return self.nazev

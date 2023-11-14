@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Karty
+from .models import Polozky
 
-admin.site.register(Karty)
+admin.site.register(Polozky)
